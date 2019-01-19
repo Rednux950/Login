@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 
 import BgImage from './assets/Background.png'
-import Logo from './assets/Logo2.png'
+import Logo from './assets/Logo.png'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const {width: WIDTH} = Dimensions.get("window")
@@ -21,11 +21,29 @@ export default class App extends React.Component {
         <Icon name={'md-person'} size={28} color={'rgb(255,255,255)'}  style={styles.inputIcon}/> 
         <TextInput
         style={styles.input}
-        placeholder={'username'}
+        placeholder={'Username'}
         placeholderTextColor={'rgb(255,255,255)'} 
         underlineColorAndroid='transparent'></TextInput>
-      
+      </View>
+
+      <View style={styles.InputCont}>
+        <Icon name={'md-lock'} size={28} color={'rgb(255,255,255)'}  style={styles.inputIcon}/> 
+          <TextInput
+          style={styles.input}
+          placeholder={'Password'}
+          secureTextEntry={true}
+          placeholderTextColor={'rgb(255,255,255)'} 
+          underlineColorAndroid='transparent'></TextInput>  
+
+        <TouchableOpacity style={styles.EyeBtn}>
+            <Icon name={'md-eye'} size={26} color={'rgb(255,255,255)'}/>
+        </TouchableOpacity>   
       </View>    
+
+      <TouchableOpacity style={styles.LoginBtn}>
+          <Text style={styles.text}>Login</Text>
+      </TouchableOpacity> 
+
       </ImageBackground>
     );
   }
@@ -40,10 +58,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   LogoContain:{
-    alignItems: 'center'    
+    alignItems: 'center',
+    marginBottom:50    
   },
   logoText:{
-    color: 'rgb(160,197,86)',
+    color: 'white',
     fontSize: 38,
     fontWeight: '500',    
     opacity: 0.8
@@ -54,6 +73,9 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginBottom: 12,
     opacity: 0.8
+  },
+  InputCont:{
+    marginTop:10,
   },
   input:{
     width: WIDTH -55,    
@@ -68,6 +90,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     left:40
+  },
+  EyeBtn:{
+    position: 'absolute',
+    top: 8,
+    right:37
+  },
+  LoginBtn:{
+    width: WIDTH -55,    
+    height: 45,
+    borderRadius:25,
+    backgroundColor: '#A161EC',
+    justifyContent: 'center',
+    marginTop:20
+  },
+  text:{
+    color: 'rgba(255,255,255,0.7)',
+    fontSize:16,
+    textAlign:'center'
+
   },
   logo:{
     width:150,
