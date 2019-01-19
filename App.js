@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 
+import Login from './screens/Login.js'
 import BgImage from './assets/Background.png'
 import Logo from './assets/Logo.png'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -8,6 +9,24 @@ import Icon from 'react-native-vector-icons/Ionicons'
 const {width: WIDTH} = Dimensions.get("window")
 
 export default class App extends React.Component {
+  
+  constructor(){
+    super()
+    this.state={
+      showPass:true,
+      press:false
+    }
+  }
+
+  showPass = () =>{
+    if(this.state.press == false){
+      this.setState({showPass:false,press:true})      
+    } else{
+      this.setState({showPass:true,press:false})
+    }
+  }
+
+
   render() {
     return (
       <ImageBackground source={BgImage} style={styles.backgroundContainer}>
@@ -31,12 +50,12 @@ export default class App extends React.Component {
           <TextInput
           style={styles.input}
           placeholder={'Password'}
-          secureTextEntry={true}
+          secureTextEntry={this.state.showPass}
           placeholderTextColor={'rgb(255,255,255)'} 
           underlineColorAndroid='transparent'></TextInput>  
 
-        <TouchableOpacity style={styles.EyeBtn}>
-            <Icon name={'md-eye'} size={26} color={'rgb(255,255,255)'}/>
+        <TouchableOpacity style={styles.EyeBtn} onPress={this.showPass.bind(this)}>
+            <Icon name={this.state.press == false ? 'md-eye' : 'md-eye-off' } size={26} color={'rgb(255,255,255)'}/>
         </TouchableOpacity>   
       </View>    
 
@@ -68,7 +87,7 @@ const styles = StyleSheet.create({
     opacity: 0.8
   },
   logoTextSub:{
-    color: 'rgb(81,74,122)',
+    color: 'rgba(0,0,0,0.40)',
     fontSize: 12,
     fontWeight: '500',
     marginBottom: 12,
@@ -100,7 +119,7 @@ const styles = StyleSheet.create({
     width: WIDTH -55,    
     height: 45,
     borderRadius:25,
-    backgroundColor: '#A161EC',
+    backgroundColor: '#DF6772',
     justifyContent: 'center',
     marginTop:20
   },
